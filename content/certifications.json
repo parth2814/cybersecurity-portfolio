@@ -1,0 +1,42 @@
+[
+  {
+    "name": "OSCP",
+    "issuer": "Offensive Security",
+    "date": "2024-06",
+    "credentialId": "OS-XXXX-XXXX",
+    "credentialUrl": "https://www.credential.net/verify",
+    "category": "Offensive"
+  },
+  {
+    "name": "CEH",
+    "issuer": "EC-Council",
+    "date": "2024-03",
+    "credentialId": "ECC-XXXX",
+    "credentialUrl": "https://www.credential.net/verify",
+    "category": "Offensive"
+  },
+  {
+    "name": "Security+",
+    "issuer": "CompTIA",
+    "date": "2023-12",
+    "credentialId": "COMP-XXXX",
+    "credentialUrl": "https://www.credential.net/verify",
+    "category": "General"
+  },
+  {
+    "name": "AWS Security Specialty",
+    "issuer": "Amazon Web Services",
+    "date": "2023-09",
+    "credentialId": "AWS-XXXX",
+    "credentialUrl": "https://www.credential.net/verify",
+    "category": "Cloud"
+  },
+  {
+    "name": "CKA",
+    "issuer": "Linux Foundation",
+    "date": "2023-06",
+    "credentialId": "LF-XXXX",
+    "credentialUrl": "https://www.credential.net/verify",
+    "category": "Cloud"
+  }
+]
