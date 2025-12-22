@@ -1,3 +1,9 @@
+import fs from "fs"
+import path from "path"
+import matter from "gray-matter"
+
+// ---------------- INTERFACES ----------------
+
 export interface ProjectFrontmatter {
   name: string
   description: string
@@ -6,6 +12,7 @@ export interface ProjectFrontmatter {
   demo?: string
   status: "active" | "maintained" | "archived"
   stars?: number
+  featured?: boolean
 }
 
 export interface Project extends ProjectFrontmatter {
@@ -13,50 +20,79 @@ export interface Project extends ProjectFrontmatter {
   content: string
 }
 
-// Hardcoded projects data
-const PROJECTS: Project[] = [
-  {
-    slug: "recon-tool",
-    name: "Advanced Recon Tool",
-    description: "Automated reconnaissance framework for security assessments",
-    tags: ["Python", "Automation", "Reconnaissance"],
-    github: "https://github.com/yourusername/recon-tool",
-    demo: "https://recon-tool-demo.com",
-    status: "active",
-    stars: 342,
-    content: "A comprehensive reconnaissance tool for security professionals...",
-  },
-  {
-    slug: "vulnerable-app",
-    name: "Vulnerable Web App",
-    description: "Intentionally vulnerable application for security training",
-    tags: ["Node.js", "Express", "Security Training"],
-    github: "https://github.com/yourusername/vulnerable-app",
-    status: "maintained",
-    stars: 189,
-    content: "Educational vulnerable application with multiple security flaws...",
-  },
-  {
-    slug: "api-scanner",
-    name: "API Security Scanner",
-    description: "Automated scanner for common API vulnerabilities",
-    tags: ["Python", "API Security", "Automation"],
-    github: "https://github.com/yourusername/api-scanner",
-    demo: "https://api-scanner.com",
-    status: "active",
-    stars: 256,
-    content: "Comprehensive API security scanning tool...",
-  },
-]
+// ---------------- CONFIG ----------------
+
+const PROJECTS_DIRECTORY = path.join(process.cwd(), "content", "projects")
+
+
+// Cache projects in memory for performance
+let cachedProjects: Project[] | null = null
+
+// ---------------- LOADERS ----------------
 
 export function getAllProjects(): Project[] {
-  return PROJECTS
+  // Return cached projects if available
+  if (cachedProjects) {
+    return cachedProjects
+  }
+
+  // Check if directory exists
+  if (!fs.existsSync(PROJECTS_DIRECTORY)) {
+    console.warn(`Projects directory not found: ${PROJECTS_DIRECTORY}`)
+    return []
+  }
+
+  // Read markdown files
+  const fileNames = fs.readdirSync(PROJECTS_DIRECTORY)
+  const markdownFiles = fileNames.filter((file) => file.endsWith(".md"))
+
+  const projects = markdownFiles.map((fileName) => {
+    const slug = fileName.replace(/\.md$/, "")
+    const fullPath = path.join(PROJECTS_DIRECTORY, fileName)
+    const fileContents = fs.readFileSync(fullPath, "utf8")
+
+    const { data, content } = matter(fileContents)
+
+    return {
+      slug,
+      name: data.name || slug,
+      description: data.description || "",
+      tags: data.tags || [],
+      github: data.github,
+      demo: data.demo,
+      status: data.status || "active",
+      stars: data.stars || 0,
+      featured: data.featured || false,
+      content,
+    } as Project
+  })
+
+  // Sort projects:
+  // 1. Featured first
+  // 2. Then by stars (desc)
+  cachedProjects = projects.sort((a, b) => {
+    if (a.featured && !b.featured) return -1
+    if (!a.featured && b.featured) return 1
+    return (b.stars || 0) - (a.stars || 0)
+  })
+
+  return cachedProjects
+}
+
+// ---------------- HELPERS ----------------
+
+export function getProjectBySlug(slug: string): Project | null {
+  const projects = getAllProjects()
+  return projects.find((p) => p.slug === slug) || null
 }
 
 export function getFeaturedProjects(): Project[] {
-  return PROJECTS.filter((p) => p.status === "active").slice(0, 3)
+  return getAllProjects()
+    .filter((p) => p.featured || p.status === "active")
+    .slice(0, 3)
 }
 
-export function getProjectBySlug(slug: string): Project | undefined {
-  return PROJECTS.find((p) => p.slug === slug)
+export function getProjectTags(): string[] {
+  const projects = getAllProjects()
+  return Array.from(new Set(projects.flatMap((p) => p.tags)))
 }
