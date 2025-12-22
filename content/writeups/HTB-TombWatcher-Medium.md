@@ -2,7 +2,7 @@
 title: "HackTheBox: Tombwatcher Writeup"
 date: "2025-10-04"
 platform: "HackTheBox"
-category: "Active Directory"
+category: "Windows Active Directory"
 difficulty: "Medium"
 tags: ["Active Directory", "Kerberoasting", "GMSA", "ADCS", "Windows"]
 excerpt: "Complete Active Directory exploitation chain from initial credentials to domain admin through Kerberoasting, GMSA extraction, and ADCS vulnerabilities"
