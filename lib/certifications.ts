@@ -9,12 +9,12 @@ export interface Certification {
 
 export const certifications: Certification[] = [
   {
-    name: "eJPT",
-    issuer: "INE Security",
-    date: "2024-09-28",
-    category: "Penetration Testing",
-    credentialId: "66f841b8-9f0e-4998-bf30-e9e93699ce13",
-    credentialUrl: "https://certs.ine.com/66f841b8-9f0e-4998-bf30-e9e93699ce13#acc.5j03qTLB",
+    name: "HTB Certified Penetration Testing Specialist (CPTS)",
+    issuer: "HackTheBox",
+    date: "2025-04-15",
+    category: "Offensive Security",
+    credentialId: "HTBCERT-8894B5D1FF",
+    credentialUrl: "https://www.credly.com/badges/2d071f9f-73c4-458f-9182-af04bbe9380a",
   },
   {
     name: "Junior Penetration Tester (PT1)",
