@@ -68,7 +68,7 @@ export default function Hero() {
             { icon: Github, href: "https://github.com/parth2814", label: "GitHub" },
             { icon: Linkedin, href: "http://www.linkedin.com/in/m0n4rch", label: "LinkedIn" },
             { icon: Twitter, href: "https://x.com/052Parth", label: "Twitter" },
-            { icon: ExternalLink, href: "https://app.hackthebox.com/profile/overview", label: "HackTheBox" },
+            { icon: ExternalLink, href: "https://app.hackthebox.com/users/920261", label: "HackTheBox" },
           ].map(({ icon: Icon, href, label }) => (
             <a
               key={label}

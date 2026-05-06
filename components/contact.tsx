@@ -6,12 +6,12 @@ import { useState } from "react"
 import { Mail, Linkedin, Github, Twitter } from "lucide-react"
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "Parth Panchal", email: "parthkpanchal12@gmail.com", message: "" })
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
-    setFormData({ name: "Parth Panchal", email: "parthkpanchal12@gmail.com", message: "" })
+    setFormData({ name: "", email: "", message: "" })
   }
 
   return (
@@ -57,11 +57,11 @@ export default function Contact() {
               <h3 className="text-lg font-bold mb-4">Connect With Me</h3>
               <div className="space-y-3">
                 <a
-                  href="mailto:hello@example.com"
+                  href="mailto:parthkpanchal12@gmail.com"
                   className="flex items-center gap-3 text-foreground/70 hover:text-accent transition-colors"
                 >
                   <Mail size={20} />
-                  <span>hello@example.com</span>
+                  <span>parthkpanchal12@gmail.com</span>
                 </a>
                 <a href="#" className="flex items-center gap-3 text-foreground/70 hover:text-accent transition-colors">
                   <Github size={20} />
