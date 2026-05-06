@@ -41,7 +41,7 @@ export default function Experience() {
       duration: "Ongoing",
       description:
         "Pursuing advanced certifications and continuously learning new security techniques and methodologies.",
-      highlights: ["eJPT Certified", "PT1 Certified", "CPTS In Progress", "Continuous Learning"],
+      highlights: ["HTB CPTS Certified", "eJPT Certified", "PT1 Certified", "Continuous Learning"],
     },
   ]
 

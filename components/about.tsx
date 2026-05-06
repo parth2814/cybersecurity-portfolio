@@ -21,6 +21,16 @@ export default function About() {
     return () => observer.disconnect()
   }, [])
 
+  const getYearsExperience = () => {
+    const start = new Date(2024, 11, 1) // December 2024 (months are 0-indexed)
+    const now = new Date()
+    const months =
+      (now.getFullYear() - start.getFullYear()) * 12 +
+      (now.getMonth() - start.getMonth())
+    const years = (months / 12).toFixed(1)
+    return `${years}+`
+  }
+
   return (
     <section id="about" className="py-20 px-4 bg-card/30">
       <div className="max-w-5xl mx-auto" id="about-section">
@@ -66,9 +76,9 @@ export default function About() {
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[
-            { label: "Years Experience", value: "1+", icon: "💼" },
+            { label: "Years Experience", value: getYearsExperience(), icon: "💼" },
             { label: "CTF Competitions", value: "15+", icon: "🏆" },
-            { label: "Certifications", value: "2+", icon: "📜" },
+            { label: "Certifications", value: "4+", icon: "📜" },
             { label: "Writeups Published", value: "10+", icon: "📝" },
           ].map((stat, i) => (
             <div
