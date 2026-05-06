@@ -6,12 +6,12 @@ import { useState } from "react"
 import { Mail, Linkedin, Github, Twitter } from "lucide-react"
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" })
+  const [formData, setFormData] = useState({ name: "Parth Panchal", email: "parthkpanchal12@gmail.com", message: "" })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log("Form submitted:", formData)
-    setFormData({ name: "", email: "", message: "" })
+    setFormData({ name: "Parth Panchal", email: "parthkpanchal12@gmail.com", message: "" })
   }
 
   return (
