@@ -6,7 +6,7 @@ import { Mail, Linkedin, Github, Twitter, CheckCircle, AlertCircle, Loader } fro
 import emailjs from "@emailjs/browser"
 
 const EMAILJS_SERVICE_ID = "service_3z3dalc"   // e.g. service_abc123
-const EMAILJS_TEMPLATE_ID = "template_gfxkuly" // e.g. template_xyz456
+const EMAILJS_TEMPLATE_ID = "template_x3oaly9" // e.g. template_xyz456
 const EMAILJS_PUBLIC_KEY = "1x1GPvxORyXtJt48W"   // e.g. user_xxxxxxxx
 
 export default function Contact() {
